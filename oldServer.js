@@ -2,6 +2,11 @@ var http = require('http');
 var fs = require('fs');
 var server = http.createServer(function (req, res) {
     console.log(req.url)
+    if (req.url === '/') {
+        // var readableStream = fs.createReadStream('./index.html', { encoding: 'utf8' });
+        res.writeHead(200, { 'content-type': 'text/string' });
+        res.end('string passed')
+    }
     if (req.url === '/home') {
         var readableStream = fs.createReadStream('./index.html', { encoding: 'utf8' });
         res.writeHead(200, { 'content-type': 'text/html' });
